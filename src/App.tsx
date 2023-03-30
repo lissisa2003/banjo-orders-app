@@ -23,7 +23,7 @@ const theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
-    button:{
+    button: {
       textTransform: 'capitalize'
     }
   },
@@ -36,11 +36,11 @@ function createData(teamMember: string, priority: string, orderNo: number, team:
 
 const orders = [
   createData(
-   "Robert Fox",
-   "High",
-   2345,
-   "Blue",
-   "01/01/2024"
+    "Robert Fox",
+    "High",
+    2345,
+    "Blue",
+    "01/01/2024"
   ),
   createData(
     "Darlene Robertson",
@@ -49,12 +49,13 @@ const orders = [
     "Red",
     "01/01/2024"
   ),
-  createData(   
+  createData(
     "Theresa Webb",
-  "Medium",
-  7452342,
-  "Green",
-  "01/01/2024"),
+    "Medium",
+    7452342,
+    "Green",
+    "01/01/2024"
+  ),
   createData(
     "Kristen Watson",
     "Medium",
@@ -100,12 +101,12 @@ function App() {
       orders.push(newValue)
     }
   };
-  
+
   return (
     <ThemeProvider theme={theme}>
       <div className="container">
         <div className='header'><span className='title'>Orders</span><Button variant='contained' onClick={handleClickOpen}>New Order</Button></div>
-        <OrderTable orders={orders}/>
+        <OrderTable orders={orders} />
         <NewOrderForm
           id="order-form"
           keepMounted
