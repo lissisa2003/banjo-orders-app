@@ -25,7 +25,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
     }
 
     function submitNewOrder(){
-        const newOrder = {...state, orderNo: Math.random() * 100000}
+        const newOrder = {...state, orderNo: Math.floor(Math.random() * 100000)}
         props.onClose(newOrder as OrderModel);
     }
 
@@ -55,7 +55,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                   }}
             />
             </FormControl>
-            <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
+            <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF', textAlign: 'left'}}>
                 <InputLabel id="priority-select-label">Priority</InputLabel>
                 <Select
                     labelId="priority-select-label"
@@ -71,7 +71,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                     <MenuItem value={"Low"}>Low</MenuItem>
                 </Select>
             </FormControl>
-            <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
+            <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF', textAlign: 'left'}}>
                 <InputLabel id="team-select-label">Team</InputLabel>
                 <Select
                     labelId="team-select-label"
