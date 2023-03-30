@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Dialog, FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
+import { Box, Button, Dialog, FormControl, FormHelperText, FormLabel, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs'
@@ -44,44 +44,43 @@ export default function NewOrderForm(props: NewOrderFormProps) {
       >
         <Box textAlign={'center'} width={'430px'} marginX={'auto'} marginY={'40px'}>
             <Typography variant='h4'>Create a New Order</Typography>
-            <Typography variant='subtitle1' sx={{marginBottom: '40px'}}>Fill out the required information to create a new order</Typography>
+            <Typography variant='subtitle1' sx={{marginBottom: '16px', fontSize: '14px'}}>Fill out the required information to create a new order</Typography>
+            <form onSubmit={submitNewOrder} id="new-order">
             <FormControl required fullWidth margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
-            <TextField
-                required
-                id="outlined-required"
-                label="Team Member Name"
-                value={state.teamMember}
-                placeholder="Placeholder"
-                onChange={(event) => {
-                    setState({teamMember: event.target.value, priority: state.priority, team: state.team, dueDate: state.dueDate});
-                  }}
-            />
+                <FormLabel required sx={{backgroundColor: '#F7FAFC', textAlign: 'left', fontSize:'14px'}}>Team Member Name</FormLabel>
+                <TextField
+                    required
+                    id="outlined-required"
+                    value={state.teamMember}
+                    placeholder="Placeholder"
+                    onChange={(event) => {
+                        setState({teamMember: event.target.value, priority: state.priority, team: state.team, dueDate: state.dueDate});
+                    }}
+                />
             </FormControl>
             <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF', textAlign: 'left'}}>
-                <InputLabel id="priority-select-label">Priority</InputLabel>
+                <FormLabel required sx={{backgroundColor: '#F7FAFC', textAlign: 'left', fontSize:'14px'}}>Priority</FormLabel>
                 <Select
-                    labelId="priority-select-label"
+                    required
                     id="priority-select"
                     value={state.priority}
                     label="Priority"
                     onChange={handlePrioritySelectChange}
-                    placeholder="Placeholder"
                 >
-                    <MenuItem value={""}></MenuItem>
+                    <MenuItem selected value={""}>Placeholder</MenuItem>
                     <MenuItem value={"High"}>High</MenuItem>
                     <MenuItem value={"Medium"}>Medium</MenuItem>
                     <MenuItem value={"Low"}>Low</MenuItem>
                 </Select>
             </FormControl>
             <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF', textAlign: 'left'}}>
-                <InputLabel id="team-select-label">Team</InputLabel>
+                <FormLabel required sx={{backgroundColor: '#F7FAFC', textAlign: 'left', fontSize:'14px'}}>Team</FormLabel>
                 <Select
-                    labelId="team-select-label"
+                    required
                     id="team-select"
                     value={state.team}
                     label="Priority"
                     onChange={handleTeamSelectChange}
-                    placeholder="Placeholder"
                 >
                     <MenuItem value={""}></MenuItem>
                     <MenuItem value={"Blue"}>Blue</MenuItem>
@@ -91,6 +90,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                 </Select>
             </FormControl >
             <FormControl fullWidth  margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
+                <FormLabel required sx={{backgroundColor: '#F7FAFC', textAlign: 'left', fontSize:'14px'}}>Due Date</FormLabel>
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
                 <DatePicker disablePast value={dayjs(state.dueDate)} onChange={(newValue)=>handleDueDateChange(newValue?.format('L'))}/>
                 </LocalizationProvider>
@@ -99,8 +99,9 @@ export default function NewOrderForm(props: NewOrderFormProps) {
 
             <Box sx={{marginTop:'40px', display: 'flex', justifyContent: 'space-between'}}>
                 <Button variant='outlined' onClick={cancelForm}>Cancel</Button>
-                <Button variant='contained' onClick={submitNewOrder}>Submit</Button>
+                <Button variant='contained' type="submit">Submit</Button>
             </Box>
+            </form>
         </Box>
         </Dialog>
     )
