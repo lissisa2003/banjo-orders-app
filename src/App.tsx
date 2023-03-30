@@ -7,6 +7,11 @@ import { OrderModel } from './Order';
 import OrderTable from './OrderTable';
 
 const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#4C6FFF',
+    }
+  },
   typography: {
     fontFamily: [
       'Inter',
@@ -21,6 +26,52 @@ const theme = createTheme({
   },
 });
 
+// Generate Order Data
+function createData(teamMember: string, priority: string, orderNo: number, team: string, dueDate: string) {
+  return { teamMember, priority, orderNo, team, dueDate };
+}
+
+const orders = [
+  createData(
+   "Robert Fox",
+   "High",
+   2345,
+   "Blue",
+   "01/01/2024"
+  ),
+  createData(
+    "Darlene Robertson",
+    "Low",
+    210735,
+    "Red",
+    "01/01/2024"
+  ),
+  createData(   
+    "Theresa Webb",
+  "Medium",
+  7452342,
+  "Green",
+  "01/01/2024"),
+  createData(
+    "Kristen Watson",
+    "Medium",
+    54234,
+    "Yellow",
+    "01/01/2024"
+  ),
+  createData(
+    "Cody Fisher",
+    "High",
+    765,
+    "Blue",
+    "01/01/2024"
+  ),
+];
+
+export interface OrderTableProps {
+  orders: OrderModel[]
+}
+
 export interface NewOrderFormProps {
   id: string;
   keepMounted: boolean;
@@ -31,7 +82,7 @@ export interface NewOrderFormProps {
 
 function App() {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState({ teamMember: "", priority: "", orderNo: 0, team: "", dueDate: dayjs().add(1, 'day') } as OrderModel);
+  const [value, setValue] = React.useState({ teamMember: "", priority: "", orderNo: 0, team: "", dueDate: dayjs().add(1, 'day').format('L') } as OrderModel);
 
 
   const handleClickOpen = () => {
@@ -43,6 +94,7 @@ function App() {
 
     if (newValue) {
       setValue(newValue);
+      orders.push(newValue)
     }
   };
   
@@ -50,7 +102,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="container">
         <div className='header'><span className='title'>Orders</span><Button variant='contained' onClick={handleClickOpen}>New Order</Button></div>
-        <OrderTable />
+        <OrderTable orders={orders}/>
         <NewOrderForm
           id="order-form"
           keepMounted

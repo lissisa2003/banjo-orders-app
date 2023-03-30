@@ -6,48 +6,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CircleIcon from '@mui/icons-material/Circle';
+import { OrderTableProps } from './App';
 
-// Generate Order Data
-function createData(teamMember: string, priority: string, orderNo: number, team: string, dueDate: string) {
-  return { teamMember, priority, orderNo, team, dueDate };
-}
 
-const orders = [
-  createData(
-   "Robert Fox",
-   "High",
-   2345,
-   "Blue",
-   "01/01/2024"
-  ),
-  createData(
-    "Darlene Robertson",
-    "Low",
-    210735,
-    "Red",
-    "01/01/2024"
-  ),
-  createData(   
-    "Theresa Webb",
-  "Medium",
-  7452342,
-  "Green",
-  "01/01/2024"),
-  createData(
-    "Kristen Watson",
-    "Medium",
-    54234,
-    "Yellow",
-    "01/01/2024"
-  ),
-  createData(
-    "Cody Fisher",
-    "High",
-    765,
-    "Blue",
-    "01/01/2024"
-  ),
-];
 
 function getIconColor(priority: string): string {
   switch (priority){
@@ -63,7 +24,7 @@ function getIconColor(priority: string): string {
 }
 
 
-export default function OrderTable() {
+export default function OrderTable(props: OrderTableProps) {
   return (
       <Table size="medium">
         <TableHead>
@@ -77,14 +38,14 @@ export default function OrderTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map((order) => (
-            <TableRow key={order.orderNo}>
+          {props.orders.map((order) => (
+            <TableRow  key={order.orderNo}>
               <TableCell sx={{fontWeight: 600}}>{order.teamMember}</TableCell>
-              <TableCell sx={{alignContents: 'center'}}><CircleIcon sx={{width: '10px', marginRight: '12px', color: getIconColor(order.priority)}}/>{order.priority}</TableCell>
-              <TableCell>{order.orderNo}</TableCell>
-              <TableCell>{order.team}</TableCell>
-              <TableCell>{order.dueDate}</TableCell>
-              <TableCell><MoreVertIcon/></TableCell>
+              <TableCell sx={{display: 'flex', alignItems: 'center', lineHeight: '32px'}}><CircleIcon sx={{width: '10px', marginRight: '12px', color: getIconColor(order.priority)}}/>{order.priority}</TableCell>
+              <TableCell >{order.orderNo}</TableCell>
+              <TableCell >{order.team}</TableCell>
+              <TableCell >{order.dueDate}</TableCell>
+              <TableCell ><MoreVertIcon/></TableCell>
             </TableRow>
           ))}
         </TableBody>

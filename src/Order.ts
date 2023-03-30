@@ -5,5 +5,5 @@ export interface OrderModel {
     priority: string;
     orderNo: number;
     team: string;
-    dueDate: dayjs.Dayjs;
+    dueDate: string;
 }

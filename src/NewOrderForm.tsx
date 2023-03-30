@@ -9,7 +9,7 @@ import { OrderModel } from './Order';
 
 export default function NewOrderForm(props: NewOrderFormProps) {
     const { onClose, value: valueProp, open, ...other } = props;
-    const [state, setState] = React.useState({teamMember: "", priority:"", team: "", dueDate: dayjs().add(1, 'day')});
+    const [state, setState] = React.useState({teamMember: "", priority:"", team: "", dueDate: dayjs().add(1, 'day').format('L')});
 
     function handlePrioritySelectChange(event: SelectChangeEvent): void {
         setState({teamMember: state.teamMember , priority: event.target.value, team: state.team, dueDate: state.dueDate})
@@ -21,7 +21,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
 
     function handleDueDateChange(value: string | null) {
         const dateValue = value ?? ''
-        setState({teamMember: state.teamMember , priority: state.priority, team: state.team, dueDate: dayjs(dateValue)})
+        setState({teamMember: state.teamMember , priority: state.priority, team: state.team, dueDate: dateValue})
     }
 
     function submitNewOrder(){
@@ -43,7 +43,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
         <Box textAlign={'center'} width={'430px'} marginX={'auto'} marginY={'40px'}>
             <Typography variant='h4'>Create a New Order</Typography>
             <Typography variant='subtitle1' sx={{marginBottom: '40px'}}>Fill out the required information to create a new order</Typography>
-            <FormControl required fullWidth margin="normal">
+            <FormControl required fullWidth margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
             <TextField
                 required
                 id="outlined-required"
@@ -55,7 +55,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                   }}
             />
             </FormControl>
-            <FormControl fullWidth required margin="normal">
+            <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
                 <InputLabel id="priority-select-label">Priority</InputLabel>
                 <Select
                     labelId="priority-select-label"
@@ -71,7 +71,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                     <MenuItem value={"Low"}>Low</MenuItem>
                 </Select>
             </FormControl>
-            <FormControl fullWidth required margin="normal">
+            <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
                 <InputLabel id="team-select-label">Team</InputLabel>
                 <Select
                     labelId="team-select-label"
@@ -88,17 +88,17 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                     <MenuItem value={"Red"}>Red</MenuItem>
                 </Select>
             </FormControl >
-            <FormControl fullWidth  margin="normal">
+            {/* <FormControl fullWidth  margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
-                <DatePicker disablePast value={dayjs(state.dueDate).format('L')} onChange={handleDueDateChange} />
+                <DatePicker disablePast value={state.dueDate} onChange={handleDueDateChange} />
                 <FormHelperText>Date Format must be mm/dd/yyyy</FormHelperText>
                 </LocalizationProvider>
-            </FormControl>
+            </FormControl> */}
 
-            <div className="buttonRow">
-                <Button onClick={cancelForm}>Cancel</Button>
+            <Box sx={{marginTop:'40px', display: 'flex', justifyContent: 'space-between'}}>
+                <Button variant='outlined' onClick={cancelForm}>Cancel</Button>
                 <Button variant='contained' onClick={submitNewOrder}>Submit</Button>
-            </div>
+            </Box>
         </Box>
         </Dialog>
     )
