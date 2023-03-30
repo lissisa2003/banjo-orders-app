@@ -37,7 +37,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
 
     return (
         <Dialog
-        sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 610, backgroundColor: '#F7FAFC', borderRadius: '16px' } }}
+        sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 630, backgroundColor: '#F7FAFC', borderRadius: '16px' } }}
         maxWidth="sm"
         open={open}
         {...other}
@@ -46,7 +46,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
             <Typography variant='h4'>Create a New Order</Typography>
             <Typography variant='subtitle1' sx={{marginBottom: '16px', fontSize: '14px'}}>Fill out the required information to create a new order</Typography>
             <form onSubmit={submitNewOrder} id="new-order">
-            <FormControl required fullWidth margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
+            <FormControl required fullWidth margin="dense" sx={{backgroundColor:'#FFFFFF'}}>
                 <FormLabel required sx={{backgroundColor: '#F7FAFC', textAlign: 'left', fontSize:'14px'}}>Team Member Name</FormLabel>
                 <TextField
                     required
@@ -58,7 +58,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                     }}
                 />
             </FormControl>
-            <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF', textAlign: 'left'}}>
+            <FormControl fullWidth required margin="dense" sx={{backgroundColor:'#FFFFFF', textAlign: 'left'}}>
                 <FormLabel required sx={{backgroundColor: '#F7FAFC', textAlign: 'left', fontSize:'14px'}}>Priority</FormLabel>
                 <Select
                     required
@@ -73,7 +73,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                     <MenuItem value={"Low"}>Low</MenuItem>
                 </Select>
             </FormControl>
-            <FormControl fullWidth required margin="normal" sx={{backgroundColor:'#FFFFFF', textAlign: 'left'}}>
+            <FormControl fullWidth required margin="dense" sx={{backgroundColor:'#FFFFFF', textAlign: 'left'}}>
                 <FormLabel required sx={{backgroundColor: '#F7FAFC', textAlign: 'left', fontSize:'14px'}}>Team</FormLabel>
                 <Select
                     required
@@ -89,7 +89,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                     <MenuItem value={"Red"}>Red</MenuItem>
                 </Select>
             </FormControl >
-            <FormControl fullWidth  margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
+            <FormControl fullWidth  margin="dense" sx={{backgroundColor:'#FFFFFF'}}>
                 <FormLabel required sx={{backgroundColor: '#F7FAFC', textAlign: 'left', fontSize:'14px'}}>Due Date</FormLabel>
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
                 <DatePicker disablePast value={dayjs(state.dueDate)} onChange={(newValue)=>handleDueDateChange(newValue?.format('L'))}/>
