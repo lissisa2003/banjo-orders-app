@@ -27,15 +27,17 @@ export default function NewOrderForm(props: NewOrderFormProps) {
     function submitNewOrder(){
         const newOrder = {...state, orderNo: Math.floor(Math.random() * 100000)}
         props.onClose(newOrder as OrderModel);
+        setState({teamMember: "", priority:"", team: "", dueDate: dayjs().add(1, 'month').format('L')})
     }
 
     function cancelForm(){
         props.onClose()
+        setState({teamMember: "", priority:"", team: "", dueDate: dayjs().add(1, 'month').format('L')})
     }
 
     return (
         <Dialog
-        sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 535, backgroundColor: '#F7FAFC', borderRadius: '16px' } }}
+        sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 610, backgroundColor: '#F7FAFC', borderRadius: '16px' } }}
         maxWidth="sm"
         open={open}
         {...other}

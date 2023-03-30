@@ -70,6 +70,41 @@ const orders = [
     "Blue",
     "01/01/2024"
   ),
+  createData(
+    "Jane Cooper",
+    "Low",
+    76982,
+    "Green",
+    "01/01/2024"
+  ),
+  createData(
+    "Jerome Bell",
+    "Low",
+    41233,
+    "Yellow",
+    "01/01/2024"
+  ),
+  createData(
+    "Jenny Wilson",
+    "High",
+    867567,
+    "Red",
+    "01/01/2024"
+  ),
+  createData(
+    "Darrell Steward",
+    "Medium",
+    2345436,
+    "Blue",
+    "01/01/2024"
+  ),
+  createData(
+    "Savannah Nguyen",
+    "Low",
+    23452,
+    "Green",
+    "01/01/2024"
+  ),
 ];
 
 export interface OrderTableProps {
