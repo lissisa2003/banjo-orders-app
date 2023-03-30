@@ -9,7 +9,7 @@ import { OrderModel } from './Order';
 
 export default function NewOrderForm(props: NewOrderFormProps) {
     const { onClose, value: valueProp, open, ...other } = props;
-    const [state, setState] = React.useState({teamMember: "", priority:"", team: "", dueDate: dayjs().add(1, 'day').format('L')});
+    const [state, setState] = React.useState({teamMember: "", priority:"", team: "", dueDate: dayjs().add(1, 'month').format('L')});
 
     function handlePrioritySelectChange(event: SelectChangeEvent): void {
         setState({teamMember: state.teamMember , priority: event.target.value, team: state.team, dueDate: state.dueDate})
@@ -19,7 +19,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
         setState({teamMember: state.teamMember , priority: state.priority, team: event.target.value, dueDate: state.dueDate})
     }
 
-    function handleDueDateChange(value: string | null) {
+    function handleDueDateChange(value: string | undefined) {
         const dateValue = value ?? ''
         setState({teamMember: state.teamMember , priority: state.priority, team: state.team, dueDate: dateValue})
     }
@@ -35,7 +35,7 @@ export default function NewOrderForm(props: NewOrderFormProps) {
 
     return (
         <Dialog
-        sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 535, backgroundColor: '#F7FAFC' } }}
+        sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 535, backgroundColor: '#F7FAFC', borderRadius: '16px' } }}
         maxWidth="sm"
         open={open}
         {...other}
@@ -88,12 +88,12 @@ export default function NewOrderForm(props: NewOrderFormProps) {
                     <MenuItem value={"Red"}>Red</MenuItem>
                 </Select>
             </FormControl >
-            {/* <FormControl fullWidth  margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
+            <FormControl fullWidth  margin="normal" sx={{backgroundColor:'#FFFFFF'}}>
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
-                <DatePicker disablePast value={state.dueDate} onChange={handleDueDateChange} />
-                <FormHelperText>Date Format must be mm/dd/yyyy</FormHelperText>
+                <DatePicker disablePast value={dayjs(state.dueDate)} onChange={(newValue)=>handleDueDateChange(newValue?.format('L'))}/>
                 </LocalizationProvider>
-            </FormControl> */}
+            </FormControl>
+            <FormHelperText >Date Format must be mm/dd/yyyy</FormHelperText>
 
             <Box sx={{marginTop:'40px', display: 'flex', justifyContent: 'space-between'}}>
                 <Button variant='outlined' onClick={cancelForm}>Cancel</Button>
