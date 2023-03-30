@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+# Banjo Orders App
+
+This project contains a table for orders and a modal form to add new orders. As this is a front end only project, the new orders are stored in browser memory and will be wiped on page refresh. 
+
+Recommended additions not included:
+- Sorting of table by columns
+- Implement menu actions implied by menu button on table
+- More robust validation
+- Add better test suite than the broken one added by Create React App
+- Add an icon or color for the Team names
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
